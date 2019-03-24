@@ -45,6 +45,14 @@ mkdir "/vmfs/volumes/$3/$2"
 echo "Copying VMDK file..."
 vmkfstools -i "/vmfs/volumes/$1/$2/$2.vmdk" -d thin "/vmfs/volumes/$3/$2/$2.vmdk"
 
+echo "Copying extra VMDK file..."
+find "/vmfs/volumes/$1/$2" -maxdepth 1 -type f | grep ".vmdk" | grep -v "\-flat.vmdk" | grep -v [0123456789][0123456789][0123456789][0123456789][0123456789][0123456789] | grep -v "$2.vmdk" | while read file;
+do
+  file=$(basename "$file")
+  echo "Copying..."
+  vmkfstools -i "/vmfs/volumes/$1/$2/$file" -d thin "/vmfs/volumes/$3/$2/$file"
+done
+
 echo "Copying other files..."
 find "/vmfs/volumes/$1/$2" -maxdepth 1 -type f | grep -v ".vmdk" | while read file; do cp "$file" "/vmfs/volumes/$3/$2"; done
 
