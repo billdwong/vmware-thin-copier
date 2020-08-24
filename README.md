@@ -9,7 +9,7 @@ A script that copies/moves Thin-provisioned VMs without converting them to thick
 
 Script syntax: move_vm.sh origin_datastore vm_name destination_datastore
 
-##Example
+## Example
 
     [root@esxi:/vmfs/volumes/5c84813a-fed5e5c0-dbfa-d05099c274e1] ./move_vm.sh "500GB EVO" testvm RAID
     #####################################
