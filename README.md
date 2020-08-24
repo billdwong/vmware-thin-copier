@@ -11,12 +11,8 @@ Script syntax: move_vm.sh origin_datastore vm_name destination_datastore
 
 ## Example
 
-    [root@esxi:/vmfs/volumes/5c84813a-fed5e5c0-dbfa-d05099c274e1] ./move_vm.sh "500GB EVO" testvm RAID
-    #####################################
-    ###VMWare Thin VM migration script###
-    #####################################
-    #########Author: manatails###########
-    #####################################
+    VMWare Thin VM migration script written by manatails
+    Version 1.0
     Moving VM testvm from datastore 500GB EVO to VM testvm at datastore RAID
     Creating destination directory...
     Copying VMDK file...
@@ -26,7 +22,7 @@ Script syntax: move_vm.sh origin_datastore vm_name destination_datastore
     Copying extra VMDK file...
     Copying other files...
     Copying snapshots...
-    copy finished.
-    Delete the original VM (y/n)? y
-    Removing origin VM...
+    Copy finished.
+    Remove origin VM files from disk (y/n)? y
+    Removing origin VM files...
     Migration finished.

@@ -1,11 +1,10 @@
 #!/bin/sh
 set -e
 
-echo "#####################################"
-echo "###VMWare Thin VM migration script###"
-echo "#####################################"
-echo "#########Author: manatails###########"
-echo "#####################################"
+VERSION="1.0"
+
+echo "VMWare Thin VM migration script written by manatails"
+echo "Version $VERSION"
 
 print_help() {
 	echo "Syntax: move_vm.sh origin_datastore vm_name destination_datastore"
@@ -13,7 +12,7 @@ print_help() {
 
 if [ -z "$3" ]
   then
-    echo "Insufficent arguments."
+    echo "Insufficent number of arguments."
 	print_help
 	exit 1
 fi
@@ -59,10 +58,10 @@ find "/vmfs/volumes/$1/$2" -maxdepth 1 -type f | grep -v ".vmdk" | while read fi
 echo "Copying snapshots..."
 find "/vmfs/volumes/$1/$2" -maxdepth 1 -type f | grep [0123456789][0123456789][0123456789][0123456789][0123456789][0123456789] | grep ".vmdk" | while read file; do cp "$file" "/vmfs/volumes/$3/$2"; done
 
-echo "copy finished."
-read -p "Delete the original VM (y/n)? " CONT
+echo "Copy finished."
+read -p "Remove origin VM files from disk (y/n)? " CONT
 if [ "$CONT" = "y" ]; then
-  echo "Removing origin VM..."
+  echo "Removing origin VM files..."
   rm -rf "/vmfs/volumes/$1/$2"
 fi
 
