@@ -1,28 +1,16 @@
-# vmware-thin-mover
+# vmware-thin-copier
 ## Summary
-A script that copies/moves Thin-provisioned VMs without converting them to thick.
+Scripts to copy VMs or datastores, converting volumes to thin-provisioned.
 
 ## Usage instructions
+### Copying a single VM to a new datastore
 1. Unregister specified VM from the virtual machine list
-2. Migrate the files with the move_vm.sh
+2. Copy the files with copy_vm.sh
 3. Re-import the VM from the new datastore
 
-Script syntax: move_vm.sh origin_datastore vm_name destination_datastore
+Script usage: copy_vm.sh <source datastore> <vm> <destination datastore>
 
-## Example
+### Copying all VMs on a datastore to another datastore
+Usage: bulk_copy_datastore_vms.sh <origin datastore> <destination datastore>
 
-    VMWare Thin VM migration script written by manatails
-    Version 1.0
-    Moving VM testvm from datastore 500GB EVO to VM testvm at datastore RAID
-    Creating destination directory...
-    Copying VMDK file...
-    Destination disk format: VMFS thin-provisioned
-    Cloning disk '/vmfs/volumes/500GB EVO/testvm/testvm.vmdk'...
-    Clone: 100% done.
-    Copying extra VMDK file...
-    Copying other files...
-    Copying snapshots...
-    Copy finished.
-    Remove origin VM files from disk (y/n)? y
-    Removing origin VM files...
-    Migration finished.
+
